@@ -1,0 +1,24 @@
+[user]
+	name = yourname
+	email = yourmail@example.com
+[color]
+	ui = auto
+[alias]
+	st = status
+	lo = log --oneline
+	ci = commit
+	cim = commit -a -m
+	br = branch
+	co = checkout
+	df = diff
+	dfs = diff --staged
+	fl = log -u
+	la = "!git config -l | grep alias"
+	last = log -1 HEAD
+	visual = !gitk
+[pack]
+	threads = 0
+[rebase]
+	autosquash = true
+[core]
+	editor = vim

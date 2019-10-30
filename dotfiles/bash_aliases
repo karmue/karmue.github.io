@@ -1,0 +1,44 @@
+alias cdc='cd && clear'
+alias cl=clear
+alias cp='cp -i'
+alias dl='dpkg -l | grep -i'
+alias mv='mv -i'
+alias pss='ps aux | grep -i'
+alias tjc='tar cjvf'
+alias tjx='tar xjvf'
+alias Zeit='sudo ntpdate de.pool.ntp.org'
+alias ':q'='exit'
+
+# some grep aliases
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# some ls aliases
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+
+# from grml, see grml.org
+# with some modifications
+alias acp='apt-cache policy'
+alias acs='apt-cache search'
+alias acsh='apt-cache show'
+alias acss='apt-cache showsrc'
+alias ag='sudo apt-get upgrade'
+alias agb='sudo apt-get build-dep'
+alias ags='apt-get source'
+alias agi='sudo apt-get install'
+alias au='sudo apt-get update'
+alias auag='sudo apt-get update && sudo apt-get upgrade'
+alias md='mkdir -p'
+alias tlog='clear && tail -f /var/log/syslog'
+
+# more aliases
+alias moshpi='mosh raspberrypi -- tmux new -ADs mosh-rpi'
+alias ..='cd ..'
+alias h='history'
+if [ $UID -ne 0 ]; then
+	alias reboot='sudo reboot'
+	alias poweroff='sudo poweroff'
+fi
