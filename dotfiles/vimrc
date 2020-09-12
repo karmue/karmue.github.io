@@ -1,7 +1,9 @@
 set number
 set incsearch
 set ignorecase
+set nohlsearch
 set tabstop=4
 set backspace=2
+set autoindent
 syntax on
 set title

@@ -5,11 +5,16 @@
 	ui = auto
 [alias]
 	st = status
+	sts = status -s
 	lo = log --oneline
+	lost = log --stat
 	ci = commit
+	cia = commit -a --amend
 	cim = commit -a -m
 	br = branch
+	brd = branch -d
 	co = checkout
+	cob = checkout -b
 	df = diff
 	dfs = diff --staged
 	fl = log -u

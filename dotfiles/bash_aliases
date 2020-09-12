@@ -1,44 +1,106 @@
+# .bash_aliases
+
+# set $mySystem for apt/dnf/pac/zyp
+mySystem="dnf"
+
+# nmap stuff
+alias netScan='nmap -sP 192.168.178.0/24'
+alias netScanvm='nmap -sP 192.168.122.0/24'
+
+# handy stuff
+alias ..='cd ..'
+alias ':q'='exit'
 alias cdc='cd && clear'
-alias cl=clear
+alias cl='clear'
 alias cp='cp -i'
-alias dl='dpkg -l | grep -i'
+alias df='df -h'
+alias dft='df -Thl --total -x tmpfs -x devtmpfs'
+alias free='free -ht'
+alias h='history'
+alias htop='htop -C'
+alias l='ls -CF'
+alias l.='ls -d .*'
+alias la='ls -A'
+alias ll='ls -l -h --color=auto'
+alias lla='ls -alh'
+alias md='mkdir -pv'
 alias mv='mv -i'
-alias pss='ps aux | grep -i'
+#alias pss='ps aux | grep -i'
+alias pss='ps aux | grep -v grep | grep -i -e VSZ -e'
+alias scp='rsync -a --progress'
+alias sudo='sudo '
 alias tjc='tar cjvf'
 alias tjx='tar xjvf'
+alias vi=vim
+alias wget='wget -c'
 alias Zeit='sudo ntpdate de.pool.ntp.org'
-alias ':q'='exit'
+
+if [ $UID -ne 0 ]; then
+	alias reboot='sudo reboot'
+	alias poweroff='sudo poweroff'
+fi
 
 # some grep aliases
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
-# some ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
+# mosh
+alias moshpi='mosh raspi -- tmux new -ADs mosh-rpi'
+alias killmosh_detached="who | grep -v 'via mosh' | grep -oP '(?<=mosh \[)(\d+)(?=\])' | xargs kill"
 
-# from grml, see grml.org
-# with some modifications
-alias acp='apt-cache policy'
-alias acs='apt-cache search'
-alias acsh='apt-cache show'
-alias acss='apt-cache showsrc'
-alias ag='sudo apt-get upgrade'
-alias agb='sudo apt-get build-dep'
-alias ags='apt-get source'
-alias agi='sudo apt-get install'
-alias au='sudo apt-get update'
-alias auag='sudo apt-get update && sudo apt-get upgrade'
-alias md='mkdir -p'
-alias tlog='clear && tail -f /var/log/syslog'
+# Fedorastuff
+if [[ $mySystem == "dnf" ]]; then
+	alias Depends='dnf repoquery --requires --resolve'
+	alias Info='dnf info'
+	alias Install='sudo dnf install'
+	#alias Installwowd='sudo dnf install --setopt=install_weak_deps=False'
+	alias List='dnf list installed | grep -i'
+	alias Policy='dnf --showduplicates list'
+	alias Provides='dnf provides'
+	alias Remove='sudo dnf remove'
+	alias Requires='dnf repoquery --installed --whatrequires'
+	alias Search='dnf search'
+	alias Show='dnf info'
+	alias Upgrade='sudo dnf upgrade'
+fi
 
-# more aliases
-alias moshpi='mosh raspberrypi -- tmux new -ADs mosh-rpi'
-alias ..='cd ..'
-alias h='history'
-if [ $UID -ne 0 ]; then
-	alias reboot='sudo reboot'
-	alias poweroff='sudo poweroff'
+# Debian-/Ubuntustuff
+if [[ $mySystem == "apt" ]]; then
+	alias acd='apt-cache depends'
+	alias acp='apt-cache policy'
+	alias acs='apt search'
+	alias acsh='apt show'
+	alias acss='apt-cache showsrc'
+	alias ag='sudo apt upgrade'
+	alias agb='sudo apt-get build-dep'
+	alias ags='apt-get source'
+	alias agi='sudo apt install'
+	alias au='sudo apt update'
+	alias auag='sudo apt update && sudo apt upgrade'
+	alias dl='dpkg -l | grep -i'
+	alias suK='sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys'
+fi
+
+# suse
+if [[ $mySystem == "zyp" ]]; then
+	unalias sudo
+	alias Info='zypper info'
+	alias Install='sudo zypper install'
+	alias Policy='zypper search -s'
+	alias Remove='sudo zypper remove'
+	alias Search='zypper search'
+	alias Show='zypper info'
+	alias Update='sudo zypper refresh'
+	#alias Upgrade='sudo zypper update'
+	alias Upgrade='sudo zypper dup'
+fi
+
+# pacman
+if [[ $mySystem == "pac" ]]; then
+	alias Info='pacman -Si'
+	alias Install='sudo pacman -Syu'
+	alias Search='pacman -Ss'
+	alias Show='pacman -Si'
+	alias Upgrade='sudo pacman -Syu'
 fi
