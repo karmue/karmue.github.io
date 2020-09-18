@@ -32,6 +32,7 @@ alias sudo='sudo '
 alias tjc='tar cjvf'
 alias tjx='tar xjvf'
 alias vi=vim
+alias vl='virsh list'
 alias wget='wget -c'
 alias Zeit='sudo ntpdate de.pool.ntp.org'
 
@@ -100,6 +101,7 @@ fi
 if [[ $mySystem == "pac" ]]; then
 	alias Info='pacman -Si'
 	alias Install='sudo pacman -Syu'
+	alias Remove='sudo pacman -Rsu'
 	alias Search='pacman -Ss'
 	alias Show='pacman -Si'
 	alias Upgrade='sudo pacman -Syu'
