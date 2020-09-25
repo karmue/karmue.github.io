@@ -33,6 +33,8 @@ alias tjc='tar cjvf'
 alias tjx='tar xjvf'
 alias vi=vim
 alias vl='virsh list'
+alias vla='virsh list --all'
+alias vs='virsh start --domain'
 alias wget='wget -c'
 alias Zeit='sudo ntpdate de.pool.ntp.org'
 
