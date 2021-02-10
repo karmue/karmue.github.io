@@ -10,6 +10,7 @@ alias netScanvm='nmap -sP 192.168.122.0/24'
 # handy stuff
 alias ..='cd ..'
 alias ':q'='exit'
+alias bc='bc -lq'
 alias cdc='cd && clear'
 alias cl='clear'
 alias cp='cp -i'
@@ -65,7 +66,7 @@ if [[ $mySystem == "dnf" ]]; then
 	alias Requires='dnf repoquery --installed --whatrequires'
 	alias Search='dnf search'
 	alias Show='dnf info'
-	alias Upgrade='sudo dnf upgrade'
+	alias Upgrade='sudo dnf upgrade --refresh'
 fi
 
 # Debian-/Ubuntustuff
